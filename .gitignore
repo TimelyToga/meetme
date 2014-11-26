@@ -7,7 +7,8 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
+env/*
+.idea/
 build/
 develop-eggs/
 dist/
@@ -51,4 +52,8 @@ coverage.xml
 docs/_build/
 
 # PyBuilder
+<<<<<<< HEAD
 target/
+=======
+target/
+>>>>>>> Init commit
