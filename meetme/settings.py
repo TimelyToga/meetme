@@ -78,7 +78,7 @@ DATABASES = {
       'USERNAME': os.environ['MONGODB_DEVELOPMENT_USER'],
       'PASSWORD': os.environ['MONGODB_DEVELOPMENT_PASSWORD'],
       'HOST': os.environ['MONGODB_DEVELOPMENT_HOST'],
-      'PORT': os.environ['MONGODB_DEVELOPMENT_PORT'],
+      'PORT': int(os.environ['MONGODB_DEVELOPMENT_PORT']),
    }
 }
 
