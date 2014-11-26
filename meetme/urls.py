@@ -1,11 +1,12 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-import meetme
-from meetme import settings
+import meetme.settings
+from meetme.server import oauth
 
 urlpatterns = patterns('',
     url(r'^$', 'webfiles.views.home'),
+    url(r'^oauth2callback$', 'meetme.server.oauth.oauth2callback'),
 
 
     url(r'^admin/', include(admin.site.urls)),
