@@ -1,1 +1,1 @@
-web: gunicorn -b localhost:5000 meetme.wsgi --log-file -
+web: gunicorn meetme.wsgi --log-file -
