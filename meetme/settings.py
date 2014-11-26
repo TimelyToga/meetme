@@ -30,6 +30,8 @@ IMG_DIR = os.path.abspath(os.path.join(STATIC_DIR, 'img'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'vs8igh73!-vksudtqza(!i+lzxvk$h9redqqpux3u%e^bllbzp'
 
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -67,11 +69,17 @@ WSGI_APPLICATION = 'meetme.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+MONGODB_URI = os.environ['MONGODB_DEVELOPMENT_URI']
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+   'default' : {
+      'ENGINE' : 'django_mongodb_engine',
+      'NAME' : os.environ['MONGODB_DEVELOPMENT_DB'],
+      'USERNAME': os.environ['MONGODB_DEVELOPMENT_USER'],
+      'PASSWORD': os.environ['MONGODB_DEVELOPMENT_PASSWORD'],
+      'HOST': os.environ['MONGODB_DEVELOPMENT_HOST'],
+      'PORT': os.environ['MONGODB_DEVELOPMENT_PORT'],
+   }
 }
 
 # Internationalization
