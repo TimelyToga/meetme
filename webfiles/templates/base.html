@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Wikiquiz</title>
+    <meta name="description" content="Quizzes generated from Wikipedia pages.">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/vendor/jquery-1.10.2.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+    {% block header %}
+    {% endblock header %}
+</head>
+
+<body>
+    <div id="wrapper">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    {% block scripts %}
+    {% endblock scripts %}
+
+</body>
+
+</html>

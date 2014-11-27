@@ -70,6 +70,8 @@ WSGI_APPLICATION = 'meetme.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 MONGODB_URI = os.environ['MONGODB_DEVELOPMENT_URI']
+DB_NAME = os.environ['MONGODB_DEVELOPMENT_DB']
+MAIN_COLLECTION_NAME = os.environ['MAIN_COLLECTION_NAME']
 
 DATABASES = {
    'default' : {
@@ -78,7 +80,7 @@ DATABASES = {
       'USERNAME': os.environ['MONGODB_DEVELOPMENT_USER'],
       'PASSWORD': os.environ['MONGODB_DEVELOPMENT_PASSWORD'],
       'HOST': os.environ['MONGODB_DEVELOPMENT_HOST'],
-      'PORT': int(os.environ['MONGODB_DEVELOPMENT_PORT']),
+      'PORT': os.environ['MONGODB_DEVELOPMENT_PORT'],
    }
 }
 

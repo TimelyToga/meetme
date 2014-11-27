@@ -6,7 +6,7 @@ from meetme.server import oauth
 
 urlpatterns = patterns('',
     url(r'^$', 'webfiles.views.home'),
-    url(r'^auth$', 'meetme')
+    url(r'^auth$', 'meetme'),
     url(r'^oauth2callback$', 'meetme.server.oauth.oauth2callback'),
 
 
