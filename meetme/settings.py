@@ -16,7 +16,7 @@ ENVIRONMENT = os.environ['ENVIRONMENT']
 DEBUG = bool(ENVIRONMENT == 'development')
 PRODUCTION = bool(ENVIRONMENT == 'production')
 
-WWW_HOST_URL = 'https://meetwithme.herokuapp.com' if PRODUCTION else 'http://localhost:5000'
+WWW_HOST_URL = 'https://www.boutch.com' if PRODUCTION else 'http://localhost:5000'
 
 
 ## BIG DIRECTORIES
