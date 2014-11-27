@@ -2,11 +2,14 @@ __author__ = 'Tim'
 
 from meetme.server.response import JsonResponseBadRequest, JsonResponse, require_json_args
 from meetme.user.models import User, Session
+from django.db import transaction
+
 
 import logging
 import base64
 import logging
 import os
+import re
 
 import meetme.server.date
 
@@ -36,3 +39,27 @@ def sign_in(request):
   setattr(request, 'session', session)
 
   return JsonResponse(dict({'sid': session.pk}.items() + user.get_all_user_as_data(user).items()))
+
+@require_json_args('email', 'username', 'password')
+def create_user(request):
+  email = request.json['email']
+  username = request.json['username']
+  password = request.json['password']
+
+  if username != re.sub(r'[^a-zA-Z0-9_]+', '', username):
+    return JsonResponseBadRequest('no valid username')
+
+  user = User.user_from_username(username)
+  if user:
+    if user.authenticate(password):
+      ## Log in
+      print "logging in"
+
+  with transaction.atomic():
+    user = User()
+    user.username = username
+    user.email_pending = email
+    user.set_and_encrypt_password(password)
+    user.save()
+
+    ## Create new Session

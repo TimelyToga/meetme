@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+ENVIRONMENT = os.environ['ENVIRONMENT']
+DEBUG = bool(ENVIRONMENT == 'development')
+PRODUCTION = bool(ENVIRONMENT == 'production')
+
+WWW_HOST_URL = 'https://meetwithme.herokuapp.com' if PRODUCTION else 'http://localhost:5000'
+
+
 ## BIG DIRECTORIES
 WEB_DIR = os.path.abspath(os.path.join(BASE_DIR, 'webfiles'))
 TEMPLATE_DIRS = (os.path.abspath(os.path.join(WEB_DIR, 'templates')), )
@@ -62,8 +69,12 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'meetme.urls'
-
 WSGI_APPLICATION = 'meetme.wsgi.application'
+
+
+## SENDGRID
+SENDGRID_USERNAME = os.environ['SENDGRID_USERNAME']
+SENDGRID_PASSWORD = os.environ['SENDGRID_PASSWORD']
 
 
 # Database

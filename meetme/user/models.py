@@ -4,6 +4,7 @@ from django.db import models
 from concurrency.fields import AutoIncVersionField
 
 import meetme.server.date
+import meetme.message.sendgrid_email
 from meetme import settings
 from meetme.server import mongo_helper
 from pytz import timezone
@@ -129,3 +130,25 @@ class Session(models.Model):
         logging.info('invalidating session: %s and user: %s, %s' % (session.pk, user.pk, session.user_agent))
         session.invalidate()
         continue
+
+class EmailVerification(models.Model):
+  class Meta:
+    db_table = 'email_verification'
+
+  user = models.ForeignKey(User, related_name='+')
+
+  confirmation_code = models.CharField(db_index=True, max_length=256, unique=True)
+
+  email = models.CharField(db_index=True, max_length=256)
+  voided = models.DateTimeField('voided', null=True)
+  completed = models.DateTimeField('completed', null=True)
+  created = models.DateTimeField('created', db_index=True)
+
+  def send(self):
+    meetme.message.sendgrid_email.send_sync(to=self.email,
+                                       from_address='support@camoji.com',
+                                       subject='Camoji Email Verification',
+                                       text_template='email-verification-email.txt',
+                                       html_template='email-verification-email.html',
+                                       web_host_url=meetme.settings.WWW_HOST_URL,
+                                       token=self.confirmation_code)
