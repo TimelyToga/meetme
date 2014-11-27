@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     url(r'^$', 'webfiles.views.home'),
     url(r'^auth$', 'meetme'),
     url(r'^oauth2callback$', 'meetme.server.oauth.oauth2callback'),
+    url(r'^_/user', include('meetme.user.urls')),
 
 
     url(r'^admin/', include(admin.site.urls)),

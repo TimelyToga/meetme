@@ -3,5 +3,26 @@
 }
 
 html * {
-   font-family: Merriweather, sans-serif !important;
+    font-family: 'Oxygen', sans-serif !important;
+    font-weight: lighter;
+}
+
+.login_inputs {
+    margin: 40px;
+}
+
+#title_text {
+    font-size: 30pt;
+    font-weight: lighter;
+    padding: 10px;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    font-size: 25pt;
+}
+
+#submit_button {
+    height: 100%;
 }

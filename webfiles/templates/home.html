@@ -4,8 +4,32 @@
 {% endblock %}
 
 {% block content %}
-
+    <div class="login_inputs">
+        <div class="title">
+            <span id="title_text">Please Sign in:</span>
+        </div>
+        <form id="login" class="login_form" accept-charset="utf-8" role="form" method="get" action="">
+            <input type="text" id="username_form" placeholder="username or email">
+            <input type="password" id="password_form" placeholder="password">
+            <input type="submit" id="submit_button" formaction="user/sign_in" style="display:none">
+        </form>
+    </div>
 {% endblock %}
 
 {% block scripts %}
+    <script>
+        // Focus on username field
+        window.onload = function() {
+          var input = document.getElementById("username_form").focus();
+        };
+
+        function submitForm(){
+            alert("SUBMITTED");
+        }
+{#        document.querySelector('form').addEventListener('submit', function (event) {#}
+{#            event.preventDefault();#}
+{##}
+{#            alert("Please use a wikipedia article link such as the following: http://en.wikipedia.org/wiki/Andalusia or https://en.wikipedia.org/wiki/Spain");#}
+{#        });#}
+    </script>
 {% endblock %}
